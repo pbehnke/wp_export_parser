@@ -1,6 +1,7 @@
 import json
-import http.client
-import urllib2
+from http.client import HTTPException
+from urllib.error import HTTPError, URLError
+from urllib.request import urlopen
 
 
 def get_embed_code(video_id, width=800, height=600):
@@ -13,9 +14,9 @@ def get_embed_code(video_id, width=800, height=600):
         maxheight=height,
     )
     try:
-        resp = json.loads(urllib2.urlopen(url).read())
+        resp = json.loads(urlopen(url).read())
         return resp['html']
-    except (urllib2.HTTPError, urllib2.URLError, httplib.HTTPException):
+    except (HTTPError, URLError, HTTPException):
         return ''
 
 

@@ -1,6 +1,6 @@
 import re
 import datetime
-from urlparse import urlparse
+from urllib.parse import urlparse
 from xml.etree.ElementTree import iterparse
 from .autop import wpautop
 from . import parse_shortcodes

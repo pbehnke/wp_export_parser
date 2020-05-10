@@ -90,13 +90,11 @@ class WPParser(object):
         self.input_file = input_file
 
     def get_domain(self):
-        self.input_file.seek(0)
         for event, elem in iterparse(self.input_file):
             if elem.tag == 'channel':
                 return urlparse(elem.find('./link').text).hostname
 
     def get_items(self):
-        self.input_file.seek(0)
         for event, elem in iterparse(self.input_file):
             if elem.tag == 'item':
                 out = parse_post(elem)

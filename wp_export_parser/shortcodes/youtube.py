@@ -1,5 +1,5 @@
 import json
-import httplib
+import http.client
 import urllib2
 
 

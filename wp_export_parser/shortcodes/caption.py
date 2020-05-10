@@ -1,8 +1,6 @@
 import cgi
 import re
 import json
-import httplib
-import urllib2
 
 def get_data(tag_atts, tag_contents):
     """

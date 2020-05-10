@@ -1,6 +1,7 @@
 import re
 import datetime
 from urllib.parse import urlparse
+from xml.etree import ElementTree
 from xml.etree.ElementTree import iterparse
 from .autop import wpautop
 from . import parse_shortcodes
@@ -90,12 +91,12 @@ class WPParser(object):
         self.input_file = input_file
 
     def get_domain(self):
-        for event, elem in iterparse(self.input_file):
+        for event, elem in parse(self.input_file):
             if elem.tag == 'channel':
                 return urlparse(elem.find('./link').text).hostname
 
     def get_items(self):
-        for event, elem in iterparse(self.input_file):
+        for event, elem in parse(self.input_file):
             if elem.tag == 'item':
                 out = parse_post(elem)
                 out['comments'] = get_comments(elem)
